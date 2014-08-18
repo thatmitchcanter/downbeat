@@ -133,3 +133,6 @@ function downbeat_admin_bar_theme_editor_option() {
 
 /* Theme Options Panel */
 require_once ( get_template_directory() . '/inc/theme-options.php' );
+
+/* Downbeat Hooks */
+require_once ( get_template_directory() . '/inc/hooks.php' );
