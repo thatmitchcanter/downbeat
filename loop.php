@@ -35,10 +35,16 @@ if (is_archive()) { ?>
 			 } else { 
              the_content("Continue reading " . the_title('', '', false)); 
 	} ?>
+	<?php wp_link_pages( $args ); ?>
     </section>
     <?php if (!is_page()) { ?>
 		<section class="post-meta">
-			<p>Categories: <?php the_category(' '); ?> | <?php comments_popup_link('No Comments &#187;', '1 Comment &#187;', '% Comments &#187;'); ?></p>
+		    <?php if ( get_theme_mod( 'downbeat_tags' ) == "yes") : ?>
+				<p class="remove-bottom">Categories: <?php the_category(' '); ?> | <?php comments_popup_link('No Comments &#187;', '1 Comment &#187;', '% Comments &#187;'); ?></p>		    	
+		    	<p><?php the_tags(); ?></p>
+		    <?php else : ?>
+				<p>Categories: <?php the_category(' '); ?> | <?php comments_popup_link('No Comments &#187;', '1 Comment &#187;', '% Comments &#187;'); ?></p>
+		    <?php endif; ?>
 		</section>
     <?php } ?>
 </article>

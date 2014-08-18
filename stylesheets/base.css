@@ -260,6 +260,73 @@
 		font-size: 13px;
 		color: #444; }
 
+/* #Comments
+================================================== */
+#comments { float:left; margin:0;}
+
+#comments {border: 0;width: 100%;}
+
+#comments h2 {
+	font-size: 1.5em;
+	border-bottom: 1px solid #eee;
+	font-weight: bold;
+}
+#comments h6 {letter-spacing: normal;text-transform: uppercase;margin: 10px 0px;}
+
+#comments .comment-meta { margin:0px 0px 20px 0px; display:block;}
+#comments .commentlist { margin:0px; float:left; list-style:none; width:100%;  }
+#comments .commentlist ul { list-style:none; margin:0; padding:0; clear:both; }
+#comments .commentlist li {margin:0; padding:0;  display:block;}
+#comments .commentlist li li { margin:0 0 20px 25px; }
+#comments .commentlist li li li {margin:0 0 20px 25px;}
+#comments .commentlist li li li li {margin:0 0 20px 25px; }
+#comments .commentlist li li li li li {margin:0 0 20px 25px;}
+
+#comments .single-comment { margin-bottom:20px; }
+#comments .comment-author { float:left; margin: 0px 10px 6px 0px; display:inline; width:50px; }
+#comments .comment-author cite { clear:both; font-weight:bold; }
+
+#comments .vcard {
+	float:left;
+	clear:both;
+	display:block;
+	width:100px;
+	min-height: 100px;
+	padding:20px 0;
+}
+#comments .vcard img.avatar {
+	border: 1px solid #eee;
+	padding: 2px;
+	background:#f4f4f4;
+}
+
+
+/* Pingbacks */
+
+
+#comments .commentlist li.pingback,
+#comments .commentlist li.pingback ul,
+#comments .commentlist li.pingback ul li,
+#comments .commentlist li.pingback .vcard {
+	margin: 0;
+	padding: 0;
+}
+
+#comments .commentlist li.pingback .vcard {
+	background:none;
+	width: 0;
+}
+#comments .commentlist li.pingback p {
+	font-size: .80em;
+	line-height: 1.45em;
+	color: #6D6D6D;
+}
+#comments .commentlist li.pingback h6 {
+	text-transform: none;
+}
+
+
+
 /* #Misc
 ================================================== */
 	.remove-bottom { margin-bottom: 0 !important; }
@@ -316,8 +383,9 @@
 	/*===Post Styles===*/
 	h3.post-title{font-weight: bold; font-size: 36px}
 	a.title-link{text-decoration: none}
-    img.alignleft{margin-right: 10px; float: left}
-	img.alignright{margin-left: 10px; float: right}
+    .alignleft{margin-right: 10px; float: left}
+	.alignright{margin-left: 10px; float: right}
+	.aligncenter { display: block; margin-left: auto; margin-right: auto;}
 	code, pre{font-family: Courier New, Courier, Monospaced}
 	.post{margin-bottom: 50px}
     img.attachment-blog-thumbnail{float: left; margin-right: 10px; padding: 10px; border: 1px solid black}
@@ -325,3 +393,58 @@
 	/*===Sidebar Styles===*/
 	h4.widgettitle{font-weight: bold}
 	.widget{margin-bottom: 25px}
+
+.wp-caption {
+	margin-bottom: 24px;
+}
+
+.wp-caption img[class*="wp-image-"] {
+	display: block;
+	margin: 0;
+}
+
+.wp-caption {
+	color: #767676;
+}
+
+.wp-caption-text {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing:    border-box;
+	box-sizing:         border-box;
+	font-size: 12px;
+	font-style: italic;
+	line-height: 1.5;
+	margin: 9px 0;
+}
+
+div.wp-caption .wp-caption-text {
+	padding-right: 10px;
+}
+
+div.wp-caption.alignright img[class*="wp-image-"],
+div.wp-caption.alignright .wp-caption-text {
+	padding-left: 10px;
+	padding-right: 0;
+}
+
+.gallery-caption {
+	background-color: rgba(0, 0, 0, 0.7);
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing:    border-box;
+	box-sizing:         border-box;
+	color: #fff;
+	font-size: 12px;
+	line-height: 1.5;
+	margin: 0;
+	max-height: 50%;
+	opacity: 0;
+	padding: 6px 8px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	text-align: left;
+	width: 100%;
+}
+
+.sticky{}
+.bypostauthor{}

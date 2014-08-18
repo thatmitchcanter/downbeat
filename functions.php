@@ -7,12 +7,18 @@ add_action( 'after_setup_theme', 'downbeat_theme_setup' );
 
 function downbeat_theme_setup() {
 
+	/* Content Width */
+	if ( ! isset( $content_width ) ) $content_width = 1200;
+
+	/* Comment Reply Script */
+	if ( is_singular() ) wp_enqueue_script( 'comment-reply' );
+
 	/* Add Theme Support for Menus */
 	add_theme_support( 'menus' );
 	register_nav_menu( 'navigation', 'Navigation Bar' );
 
 	/* Automatic RSS Links (useful for feed readers) */
-	automatic_feed_links();	
+	add_theme_support( 'automatic-feed-links' );
 
 	/* Adds support for Post Thumbnails */
 	add_theme_support( 'post-thumbnails' );	
@@ -24,13 +30,34 @@ function downbeat_theme_setup() {
 	add_action( 'widgets_init', 'downbeat_register_footer_sidebars' );
 	add_filter('dynamic_sidebar_params','downbeat_widget_first_last_classes');
 
-	/** Add Theme Editor to Admin Bar (to save time!) **/
+	/* Add Theme Editor to Admin Bar (to save time!) */
 	add_action( 'admin_bar_menu', 'downbeat_admin_bar_theme_editor_option', 100 );
+
+	/* Customized Comment Display */
+	if ( ! function_exists( 'downbeat_comments' ) ) :
+		function downbeat_comments($comment, $args, $depth) {
+		$GLOBALS['comment'] = $comment; ?>
+		<li <?php comment_class(); ?> id="li-comment-<?php comment_ID() ?>">
+			<div id="comment-<?php comment_ID(); ?>" class="single-comment clearfix">
+				<div class="comment-author vcard"> <?php echo get_avatar($comment,$size='64'); ?></div>
+				<div class="comment-meta commentmetadata">
+					<?php if ($comment->comment_approved == '0') : ?>
+					<em><?php _e('Comment is awaiting moderation','downbeat');?></em> <br />
+					<?php endif; ?>
+					<h6><?php echo __('By','downbeat').' '.get_comment_author_link(). ' '. get_comment_date(). '  -  ' . get_comment_time(); ?></h6>
+					<?php comment_text() ?>
+					<?php edit_comment_link(__('Edit comment','downbeat'),'  ',''); ?>
+					<?php comment_reply_link(array_merge( $args, array('reply_text' => __('Reply','downbeat'),'depth' => $depth, 'max_depth' => $args['max_depth']))); ?>
+				</div>
+			</div>
+			<!-- </li> -->
+		<?php  }
+	endif;	
 
 }
 
+/* Right Sidebar Setup */
 function downbeat_register_right_sidebars() { 
-	/* Right Sidebar Setup */
 	register_sidebar(array(
 	  'name' => 'Right Sidebar',
 	  'id' => 'right-sidebar',
@@ -42,8 +69,8 @@ function downbeat_register_right_sidebars() {
 	));
 }
 
+/* Footer Widgets Sidebar Setup */
 function downbeat_register_footer_sidebars() {
-	/* Footer Widgets Sidebar Setup */
 	register_sidebar(array(
 	  'name' => 'Footer Sidebar',
 	  'id' => 'footer-sidebar',
@@ -90,15 +117,16 @@ function downbeat_widget_first_last_classes($params) {
 	return $params;
 
 }
-	
+
+/* Adds Edit Theme to Bar */
 function downbeat_admin_bar_theme_editor_option() {  
 	global $wp_admin_bar;   
 	if ( !is_super_admin() || !is_admin_bar_showing() )      
 	return;    
 	$wp_admin_bar->add_menu(        
 		array( 'id' => 'edit-theme',            
-		'title' => __('Edit Theme'),            
-		'href' => '' . get_bloginfo('url') . '/wp-admin/theme-editor.php'        
+		'title' => __("Edit Theme", 'downbeat'),           
+		'href' => '' . home_url() . '/wp-admin/theme-editor.php'        
 	)    
 	);
 }	

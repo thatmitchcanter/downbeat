@@ -8,7 +8,7 @@
 <header id="header">
 <div class="container">
     <div class="sixteen columns alpha omega">
-    <a class="logo" href="<?php bloginfo('url'); ?>">
+    <a class="logo" href="<?php echo home_url(); ?>">
     <?php if ( get_theme_mod( 'downbeat_logo' ) ) : ?>
 	    <div class='site-logo'>
 	        <h1 class="remove-bottom site-title"><img class="scale-with-grid" src='<?php echo esc_url( get_theme_mod( 'downbeat_logo' ) ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>'></h1>

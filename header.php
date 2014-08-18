@@ -23,7 +23,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 	<!-- ===== Stylesheets ===== -->
-	<link rel="stylesheet" href= "<?php bloginfo('stylesheet_directory'); ?>/style.css">    
+	<link rel="stylesheet" href= "<?php echo get_stylesheet_uri(); ?>">    
 
 	<!-- ===== HTML5 SHIV ===== -->
 	<!--[if lt IE 9]>
@@ -31,10 +31,10 @@
 	<![endif]-->
 
 	<!-- ===== Favicons & Apple Dock Icons ===== -->
-	<link rel="shortcut icon" href="<?php bloginfo('stylesheet_directory'); ?>/images/favicon.ico">
-	<link rel="apple-touch-icon" href="<?php bloginfo('stylesheet_directory'); ?>/images/apple-touch-icon.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="<?php bloginfo('stylesheet_directory'); ?>/images/apple-touch-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="<?php bloginfo('stylesheet_directory'); ?>/nimages/apple-touch-icon-114x114.png">
+	<link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri(); ?>/images/favicon.ico">
+	<link rel="apple-touch-icon" href="<?php echo get_stylesheet_directory_uri(); ?>/images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="<?php echo get_stylesheet_directory_uri(); ?>/images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="<?php echo get_stylesheet_directory_uri(); ?>/images/apple-touch-icon-114x114.png">
 
 	<?php wp_head(); ?>   
 	     
