@@ -1,0 +1,36 @@
+/*
+Theme Name: Downbeat
+Theme URI: http://www.studionashvegas.com
+Author: Mitch Canter
+Author URI: http://www.studionashvegas.com
+Description: The Core Theme for [studionashvegas].  This is a bare-bones, responsive theme jam-packed with features used for the client websites of [studionashvegas].
+Version: v1.2
+License: http://www.opensource.org/licenses/mit-license.php.
+Tags: Responsive, grid, mobile, framework, bare-bones
+*/
+
+/* ====== Table of Contents ======
+	Generic Site Styles
+	@Media Queries 
+*/
+
+/* ====== Generic Site Styles ====== */
+@import url("stylesheets/base.css");
+@import url("stylesheets/skeleton.css");
+
+/* ====== @Media Queries ====== */
+
+	/* Smaller than standard 960 (devices and browsers) */
+	@media only screen and (max-width: 959px) {}
+
+	/* Tablet Portrait size to standard 960 (devices and browsers) */
+	@media only screen and (min-width: 768px) and (max-width: 959px) {}
+
+	/* All Mobile Sizes (devices and browser) */
+	@media only screen and (max-width: 767px) {}
+
+	/* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
+	@media only screen and (min-width: 480px) and (max-width: 767px) {}
+
+	/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+	@media only screen and (max-width: 479px) {}
