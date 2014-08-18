@@ -6,8 +6,9 @@ add_action('customize_register', 'downbeat_post_customize');
 function downbeat_header_customize($wp_customize) {
  
     $wp_customize->add_section( 'downbeat_header_settings', array(
-		'title' => __('Header Options', 'downbeat' ),         
-        'priority'       => 35,
+		'title'           => __('Header Options', 'downbeat' ),         
+        'priority'        => 35,
+        'description'     => __('Set options for content located in the header (logo upload, etc).', 'downbeat' ),
     ) );
  
     $wp_customize->add_setting( 'downbeat_logo', array(
@@ -28,6 +29,7 @@ function downbeat_layout_customize($wp_customize) {
     $wp_customize->add_section( 'downbeat_layout_settings', array(
         'title'          => __('Layout Options', 'downbeat' ),
         'priority'       => 36,
+        'description'     => __('Set options for how various content regions are displayed.', 'downbeat' ),        
     ) );
 
     $wp_customize->add_setting( 'downbeat_layout', array(
@@ -66,6 +68,7 @@ function downbeat_post_customize($wp_customize) {
     $wp_customize->add_section( 'downbeat_post_settings', array(
         'title'          => __('Post Options', 'downbeat' ),
         'priority'       => 37,
+        'description'     => __('Set options for the post related content and meta.', 'downbeat' ),                
     ) );
 
     $wp_customize->add_setting( 'downbeat_tags', array(
