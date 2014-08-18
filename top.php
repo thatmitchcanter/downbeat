@@ -15,7 +15,7 @@
 	    </div>
 	<?php else : ?>
 	    <h1 class="remove-bottom site-title"><?php bloginfo('title'); ?></h1>
-	    <h5><?php bloginfo('description'); ?></h5>
+	    <h5 class="site-description"><?php bloginfo('description'); ?></h5>
 	<?php endif; ?>
     </a>
     </div>

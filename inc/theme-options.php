@@ -10,6 +10,7 @@ function downbeat_header_customize($wp_customize) {
     ) );
  
     $wp_customize->add_setting( 'downbeat_logo', array(
+    	 'default'        => 'left',
     ) );
  
     $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'downbeat_logo', array(
@@ -18,6 +19,8 @@ function downbeat_header_customize($wp_customize) {
         'settings'   => 'downbeat_logo',
     ) ) ); 
  
+	if ( $wp_customize->is_preview() && ! is_admin() )
+	    add_action( 'wp_footer', 'downbeat_customize_preview', 21);
 }
 
 function downbeat_layout_customize($wp_customize) {
@@ -41,4 +44,22 @@ function downbeat_layout_customize($wp_customize) {
 	        ),
 	) );    
  
+}
+
+function downbeat_customize_preview() { ?>
+    <script type="text/javascript">
+    ( function( $ ){
+    wp.customize('blogname',function( value ) {
+        value.bind(function(to) {
+            $('.site-title').html(to);
+        });
+    });
+    wp.customize('blogdescription',function( value ) {
+        value.bind(function(to) {
+            $('.site-description').html(to);
+        });
+    });
+    } )( jQuery )
+    </script>
+    <?php
 }
