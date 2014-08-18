@@ -36,7 +36,6 @@
 	<link rel="apple-touch-icon" sizes="72x72" href="<?php bloginfo('stylesheet_directory'); ?>/images/apple-touch-icon-72x72.png">
 	<link rel="apple-touch-icon" sizes="114x114" href="<?php bloginfo('stylesheet_directory'); ?>/nimages/apple-touch-icon-114x114.png">
 
-	<!-- ===== Header Hook for Various WordPress Plugins / Functions ===== -->
 	<?php wp_head(); ?>   
 	     
 </head>
