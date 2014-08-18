@@ -3,45 +3,61 @@
  * @package WordPress
  * @subpackage Downbeat
  */
+add_action( 'after_setup_theme', 'downbeat_theme_setup' );
 
-/** Adds Support for Menus **/
-add_theme_support( 'menus' );
-register_nav_menu( 'navigation', 'Navigation Bar' );
+function downbeat_theme_setup() {
 
-/** Right Sidebar Setup **/
-register_sidebar(array(
-  'name' => 'Right Sidebar',
-  'id' => 'right-sidebar',
-  'description' => 'Widgets in this area will be shown on the right-hand side.',
-        'before_widget' => '<li id="%1$s" class="widget %2$s">',
-        'after_widget' => '</li>',
-        'before_title' => '<h4 class="widgettitle">',
-        'after_title' => '</h4>',
-));
+	/* Add Theme Support for Menus */
+	add_theme_support( 'menus' );
+	register_nav_menu( 'navigation', 'Navigation Bar' );
 
-/** Footer Widgets Sidebar Setup **/
-register_sidebar(array(
-  'name' => 'Footer Sidebar',
-  'id' => 'footer-sidebar',
-  'description' => 'Widgets in this area will be shown in the footer_widgets area.',
-        'before_widget' => '<div id="%1$s" class="one-third column widget %2$s">',
-        'after_widget' => '</div>',
-        'before_title' => '<h4 class="widgettitle">',
-        'after_title' => '</h4>',
-));
+	/* Automatic RSS Links (useful for feed readers) */
+	automatic_feed_links();	
 
-/** Adds support for Post Thumbnails **/
-add_theme_support( 'post-thumbnails' );
+	/* Adds support for Post Thumbnails */
+	add_theme_support( 'post-thumbnails' );	
 
-/** Allows for shortcodes in widgets **/
-add_filter('widget_text', 'do_shortcode');
+	/* Allows for shortcodes in widgets */
+	add_filter('widget_text', 'do_shortcode');	
 
-/** Automatic RSS Links (useful for feed readers) **/
-automatic_feed_links();
+	add_action( 'widgets_init', 'downbeat_register_right_sidebars' );
+	add_action( 'widgets_init', 'downbeat_register_footer_sidebars' );
+	add_filter('dynamic_sidebar_params','downbeat_widget_first_last_classes');
 
-/** Add "first" and "last" CSS classes to dynamic sidebar widgets. Also adds numeric index class for each widget (widget-1, widget-2, etc.) **/
-/** via http://wordpress.org/support/topic/how-to-first-and-last-css-classes-for-sidebar-widgets **/
-function widget_first_last_classes($params) {
+	/** Add Theme Editor to Admin Bar (to save time!) **/
+	add_action( 'admin_bar_menu', 'downbeat_admin_bar_theme_editor_option', 100 );
+
+}
+
+function downbeat_register_right_sidebars() { 
+	/* Right Sidebar Setup */
+	register_sidebar(array(
+	  'name' => 'Right Sidebar',
+	  'id' => 'right-sidebar',
+	  'description' => 'Widgets in this area will be shown on the right-hand side.',
+	        'before_widget' => '<li id="%1$s" class="widget %2$s">',
+	        'after_widget' => '</li>',
+	        'before_title' => '<h4 class="widgettitle">',
+	        'after_title' => '</h4>',
+	));
+}
+
+function downbeat_register_footer_sidebars() {
+	/* Footer Widgets Sidebar Setup */
+	register_sidebar(array(
+	  'name' => 'Footer Sidebar',
+	  'id' => 'footer-sidebar',
+	  'description' => 'Widgets in this area will be shown in the footer_widgets area.',
+	        'before_widget' => '<div id="%1$s" class="one-third column widget %2$s">',
+	        'after_widget' => '</div>',
+	        'before_title' => '<h4 class="widgettitle">',
+	        'after_title' => '</h4>',
+	));	
+}
+
+/* Add "first" and "last" CSS classes to dynamic sidebar widgets. */
+/* Also adds numeric index class for each widget (widget-1, widget-2, etc.) */
+function downbeat_widget_first_last_classes($params) {
 
 	global $my_widget_num; // Global a counter array
 	$this_id = $params[0]['id']; // Get the id for the current sidebar we're processing
@@ -74,19 +90,15 @@ function widget_first_last_classes($params) {
 	return $params;
 
 }
-add_filter('dynamic_sidebar_params','widget_first_last_classes');
-
-/** Add Theme Editor to Admin Bar (to save time!) **/
-function admin_bar_theme_editor_option() {  
+	
+function downbeat_admin_bar_theme_editor_option() {  
 	global $wp_admin_bar;   
-		if ( !is_super_admin() || !is_admin_bar_showing() )      
-		return;    
-		$wp_admin_bar->add_menu(        
-			array( 'id' => 'edit-theme',            
-			'title' => __('Edit Theme'),            
-			'href' => '' . get_bloginfo('url') . '/wp-admin/theme-editor.php'        
-		)    
-		);
-	}
-
-add_action( 'admin_bar_menu', 'admin_bar_theme_editor_option', 100 );
+	if ( !is_super_admin() || !is_admin_bar_showing() )      
+	return;    
+	$wp_admin_bar->add_menu(        
+		array( 'id' => 'edit-theme',            
+		'title' => __('Edit Theme'),            
+		'href' => '' . get_bloginfo('url') . '/wp-admin/theme-editor.php'        
+	)    
+	);
+}	
