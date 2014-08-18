@@ -11,7 +11,6 @@ function downbeat_header_customize($wp_customize) {
     ) );
  
     $wp_customize->add_setting( 'downbeat_logo', array(
-    	 'default'        => 'left',
     ) );
  
     $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'downbeat_logo', array(
@@ -32,6 +31,7 @@ function downbeat_layout_customize($wp_customize) {
     ) );
 
     $wp_customize->add_setting( 'downbeat_layout', array(
+         'default'        => 'left',        
     ) );    
 
 	$wp_customize->add_control( 'downbeat_layout', array(
@@ -44,6 +44,20 @@ function downbeat_layout_customize($wp_customize) {
 	        'full' => __('Full Width', 'downbeat' ),
 	        ),
 	) );    
+
+    $wp_customize->add_setting( 'downbeat_footer_widgets', array(
+         'default'        => 'yes',        
+    ) );    
+
+    $wp_customize->add_control( 'downbeat_footer_widgets', array(
+        'label'   => __('Use Footer Widgets?', 'downbeat' ),
+        'section' => 'downbeat_layout_settings',
+        'type'    => 'select',
+        'choices'    => array(
+            'yes' => __('Yes', 'downbeat' ),      
+            'no' => __('No', 'downbeat' ),
+            ),
+    ) );        
  
 }
 
